@@ -5,6 +5,11 @@ import com.marciosalesdev.movieflix.controller.response.MovieResponse;
 import com.marciosalesdev.movieflix.entity.Movie;
 import com.marciosalesdev.movieflix.mapper.MovieMapper;
 import com.marciosalesdev.movieflix.service.MovieService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,10 +22,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/movieflix/movie")
 @RequiredArgsConstructor
+@Tag(name = "Movie", description = "Recurso responsavel pelo gerenciamento dos filmes")
 public class MovieController {
 
     private final MovieService movieService;
 
+    @Operation(summary = "salvar filmes", description = "metodo para salvar filmes")
+    @ApiResponse(responseCode = "201", description = "Filme salvo com sucesso.",
+            content = @Content(schema = @Schema(implementation = MovieResponse.class)))
     @PostMapping
     public ResponseEntity<MovieResponse> save(@Valid @RequestBody MovieRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(MovieMapper.toMovieResponse(movieService.save(MovieMapper.toMovie(request))));
