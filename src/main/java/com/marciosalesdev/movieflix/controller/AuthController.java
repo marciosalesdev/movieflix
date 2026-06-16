@@ -8,6 +8,7 @@ import com.marciosalesdev.movieflix.entity.User;
 import com.marciosalesdev.movieflix.exception.UsernameOrPasswordInvalidException;
 import com.marciosalesdev.movieflix.mapper.UserMapper;
 import com.marciosalesdev.movieflix.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movieflix/auth")
 @RequiredArgsConstructor
+@Tag(name = "Autenticaçao Usuario", description = "Recurso responsavel pelo gerenciamento a categoria dos filmes")
 public class AuthController {
 
     private final UserService userService;

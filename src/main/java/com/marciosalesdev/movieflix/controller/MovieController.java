@@ -35,16 +35,18 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.CREATED).body(MovieMapper.toMovieResponse(movieService.save(MovieMapper.toMovie(request))));
     }
 
+    @Operation(summary = "Lista de filmes", description = "recurso de buscar lista de filmes")
     @GetMapping
     public ResponseEntity<List<MovieResponse>> listMovie() {
         return ResponseEntity.ok(movieService.findAll().stream().map(MovieMapper::toMovieResponse).toList());
     }
 
+    @Operation(summary = "Busca filme por id.", description = "recurso de buscar filme por id correspondente")
     @GetMapping("/{id}")
     public ResponseEntity<MovieResponse> findById(@PathVariable Long id) {
         return movieService.findById(id).map(movie -> ResponseEntity.ok(MovieMapper.toMovieResponse(movie))).orElse(ResponseEntity.notFound().build());
     }
-
+    @Operation(summary = "Atualizar filme", description = "recurso de buscar atualizar filme.")
     @PutMapping("/{id}")
     public ResponseEntity<MovieResponse> update(@PathVariable Long id, @Valid
     @RequestBody MovieRequest movieUpdate) {
@@ -52,7 +54,7 @@ public class MovieController {
                 .orElse(ResponseEntity.notFound().build());
 
     }
-
+    @Operation(summary = "Buscar lista de filme por categoria", description = "Recurso de buscar atualizar filme.")
     @GetMapping("/search")
     public ResponseEntity<List<MovieResponse>> findByCategory(@RequestParam Long category) {
         return ResponseEntity.ok(movieService.findByCategory(category)
@@ -60,7 +62,7 @@ public class MovieController {
                 .map(MovieMapper::toMovieResponse)
                 .toList());
     }
-
+    @Operation(summary = "delete filme por id", description = "recurso de deletar filme.")
     @DeleteMapping("/id")
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
         Optional<Movie> optMovie = movieService.findById(id);

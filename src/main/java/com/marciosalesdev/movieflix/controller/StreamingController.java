@@ -5,6 +5,7 @@ import com.marciosalesdev.movieflix.controller.response.StreamingResponse;
 import com.marciosalesdev.movieflix.entity.Streaming;
 import com.marciosalesdev.movieflix.mapper.StreamingMapper;
 import com.marciosalesdev.movieflix.service.StreamingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping(path = "/movieflix/streaming")
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Streamings", description = "Recurso responsavel pelo gerenciamento a streamings dos filmes")
 public class StreamingController {
 
     private final StreamingService service;

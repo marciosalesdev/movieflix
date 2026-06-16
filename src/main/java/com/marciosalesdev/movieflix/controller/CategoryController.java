@@ -5,6 +5,7 @@ import com.marciosalesdev.movieflix.controller.response.CategoryResponse;
 import com.marciosalesdev.movieflix.entity.Category;
 import com.marciosalesdev.movieflix.mapper.CategoryMapper;
 import com.marciosalesdev.movieflix.service.CategoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping(path = "/movieflix/category")
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Categoria", description = "Recurso responsavel pelo gerenciamento a categoria dos filmes")
 public class CategoryController {
 
     private final CategoryService categoryService;
