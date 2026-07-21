@@ -1,15 +1,5 @@
 package com.marciosalesdev.movieflix.controller;
 
-import com.marciosalesdev.movieflix.config.TokenService;
-import com.marciosalesdev.movieflix.controller.request.LoginRequest;
-import com.marciosalesdev.movieflix.controller.request.UserRequest;
-import com.marciosalesdev.movieflix.controller.response.UserResponse;
-import com.marciosalesdev.movieflix.entity.User;
-import com.marciosalesdev.movieflix.exception.UsernameOrPasswordInvalidException;
-import com.marciosalesdev.movieflix.mapper.UserMapper;
-import com.marciosalesdev.movieflix.service.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.marciosalesdev.movieflix.config.TokenService;
+import com.marciosalesdev.movieflix.controller.request.LoginRequest;
+import com.marciosalesdev.movieflix.controller.request.UserRequest;
+import com.marciosalesdev.movieflix.controller.response.UserResponse;
+import com.marciosalesdev.movieflix.entity.User;
+import com.marciosalesdev.movieflix.exception.UsernameOrPasswordInvalidException;
+import com.marciosalesdev.movieflix.mapper.UserMapper;
+import com.marciosalesdev.movieflix.service.UserService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/movieflix/auth")
@@ -38,7 +40,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> register(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         try {
 
             UsernamePasswordAuthenticationToken authAndPass = new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password());
